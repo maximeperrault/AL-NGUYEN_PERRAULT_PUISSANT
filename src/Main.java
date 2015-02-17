@@ -8,6 +8,8 @@ public class Main {
 		System.out.println("Let's rock this project !");
 		
 		LogEsiea log = new LogEsiea();
+		log.setDestination('f');
+		
 		log.error("Error");
 		log.wtf("What the fuck ?");
 		log.debug("Debug");

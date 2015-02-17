@@ -6,9 +6,10 @@ import java.util.Date;
 
 public class LogEsiea {
 
-	private String level;
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	private final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	private final String loggingFrom;
+	private final WriteLog write = new WriteLog();
+	private char destination = 't';
 	
 	public LogEsiea() {
 		StackTraceElement [] s = new RuntimeException().getStackTrace();
@@ -29,7 +30,7 @@ public class LogEsiea {
 		sb.append(" MESSAGE= ");
 		sb.append(msg);
 		sb.append("]");
-		System.out.println(sb.toString());
+		write.write(this.destination, sb.toString());
 	}
 	
 	public void debug(String msg){
@@ -81,5 +82,9 @@ public class LogEsiea {
 		sb.append(msg);
 		sb.append("]");
 		System.out.println(sb.toString());
+	}
+
+	public void setDestination(char c) {
+		this.destination = c;		
 	}
 }
