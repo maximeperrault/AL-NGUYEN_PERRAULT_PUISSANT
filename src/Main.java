@@ -1,3 +1,4 @@
+import LogEsiea.LogEsiea;
 
 public class Main {
 
@@ -6,6 +7,11 @@ public class Main {
 
 		System.out.println("Let's rock this project !");
 		
+		LogEsiea log = new LogEsiea();
+		log.error("Error");
+		log.wtf("What the fuck ?");
+		log.debug("Debug");
+		log.info("Info");
 	}
 
 }
