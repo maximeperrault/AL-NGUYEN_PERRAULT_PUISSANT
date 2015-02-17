@@ -14,11 +14,11 @@ public class WriteLog {
 			break;
 		case 'f':
 			try {
-				File f = new File(System.getProperty("user.dir"));
+				File f = new File(System.getProperty("user.dir")+"/log.txt");
 				if(!f.exists())
 					f.createNewFile();
 				
-				FileWriter fw = new FileWriter(f.getAbsoluteFile()+"/log.txt");
+				FileWriter fw = new FileWriter(f.getAbsoluteFile(), true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				bw.write(msg);
 				bw.close();
@@ -27,7 +27,7 @@ public class WriteLog {
 				e.printStackTrace();
 			}
 			break;
-		case 'r':
+		case 'r': //fichier rotatif
 			break;
 		}
 	}
