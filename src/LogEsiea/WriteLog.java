@@ -8,17 +8,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WriteLog {
-
-	boolean flag = false;
 	
 	public void write(char lvl, String msg) {
+		File dir = new File("Log");
+		if(!dir.exists())
+			dir.mkdir();
+		
 		switch(lvl){
 		case 't': //terminal
 			System.out.println(msg);
 			break;
 		case 'f': //fichier simple
 			try {
-				File f = new File(System.getProperty("user.dir")+"/log.txt");
+				File f = new File(System.getProperty("user.dir")+"/Log/log.txt");
 				
 				if(!f.exists()){
 					f.createNewFile();
@@ -38,7 +40,7 @@ public class WriteLog {
 			break;
 		case 'r': //fichier rotatif
 			try{
-				File f = new File(System.getProperty("user.dir")+"/logRot_0.txt");
+				File f = new File(System.getProperty("user.dir")+"/Log/logRot_0.txt");
 				File ff = filerot(f, 0);
 				FileWriter fw = new FileWriter(ff.getAbsoluteFile(), true);
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -69,7 +71,7 @@ public class WriteLog {
 				file = br.readLine();
 				int i1 = Character.getNumericValue(file.charAt(0));
 				i1++;
-				return filerot(new File(System.getProperty("user.dir")+"/logRot_"+i1+".txt"), i1);
+				return filerot(new File(System.getProperty("user.dir")+"/Log/logRot_"+i1+".txt"), i1);
 			}else{
 				return f;
 			}
