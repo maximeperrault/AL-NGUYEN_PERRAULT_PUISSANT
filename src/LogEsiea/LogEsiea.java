@@ -47,7 +47,7 @@ public class LogEsiea {
 		sb.append(" MESSAGE= ");
 		sb.append(msg);
 		sb.append("]");
-		System.out.println(sb.toString());
+		write.write(this.destination, sb.toString());
 	}
 	
 	public void info(String msg){
@@ -64,7 +64,7 @@ public class LogEsiea {
 		sb.append(" MESSAGE= ");
 		sb.append(msg);
 		sb.append("]");
-		System.out.println(sb.toString());
+		write.write(this.destination, sb.toString());
 	}
 	
 	public void wtf(String msg){
@@ -81,7 +81,7 @@ public class LogEsiea {
 		sb.append(" MESSAGE= ");
 		sb.append(msg);
 		sb.append("]");
-		System.out.println(sb.toString());
+		write.write(this.destination, sb.toString());
 	}
 
 	public void setDestination(char c) {

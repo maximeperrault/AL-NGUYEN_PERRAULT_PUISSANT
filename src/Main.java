@@ -11,6 +11,7 @@ public class Main {
 		log.setDestination('f');
 		
 		log.error("Error");
+		log.setDestination('t');
 		log.wtf("What the fuck ?");
 		log.debug("Debug");
 		log.info("Info");
