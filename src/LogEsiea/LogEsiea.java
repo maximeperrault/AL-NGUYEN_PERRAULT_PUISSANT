@@ -1,11 +1,7 @@
 package LogEsiea;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
 
 public class LogEsiea {
 
@@ -22,7 +18,6 @@ public class LogEsiea {
 		try {
 			prop.load();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

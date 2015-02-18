@@ -63,6 +63,7 @@ public class WriteLog {
 			double bytes = f.length();
 			if(bytes > 52428800){
 				String file;
+				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(new FileReader(f.getAbsoluteFile()));
 				file = br.readLine();
 				int i1 = Character.getNumericValue(file.charAt(0));
