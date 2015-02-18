@@ -24,10 +24,6 @@ public class WriteLog {
 				
 				if(!f.exists()){
 					f.createNewFile();
-					FileWriter fw = new FileWriter(f.getAbsoluteFile(), true);
-					BufferedWriter bw = new BufferedWriter(fw);
-					bw.write("0\r\n");
-					bw.close();
 				}
 				FileWriter fw = new FileWriter(f.getAbsoluteFile(), true);
 				BufferedWriter bw = new BufferedWriter(fw);
