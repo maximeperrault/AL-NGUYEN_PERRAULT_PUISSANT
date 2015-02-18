@@ -1,8 +1,11 @@
 package LogEsiea;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 public class LogEsiea {
 
@@ -11,10 +14,27 @@ public class LogEsiea {
 	private char destination = 't';
 	private int lvl = 0;
 	private LogBuilder lb = new LogBuilder();
-	private String path = "/Log/";
+	private String path = "/Log";
 	
 	
 	public LogEsiea() {
+		PropertiesLoader prop = new PropertiesLoader();
+		try {
+			prop.load();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(prop.getLvl() != 0)
+			setLevel(Levels.values()[prop.getLvl()].toString().toLowerCase().charAt(0));
+		
+		if(prop.getDestination() != 'a')
+			this.setDestination(prop.getDestination());
+		
+		if(prop.getPath() != null)
+			this.setPath(prop.getPath());
+		
 		StackTraceElement [] s = new RuntimeException().getStackTrace();
 		this.loggingFrom = "("+s[1].getClassName()+")";
 	}
