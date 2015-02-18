@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class WriteLog {
 	
-	public void write(char lvl, String msg) {
+	public void write(char lvl, String msg, String path) {
 		File dir = new File("Log");
 		if(!dir.exists())
 			dir.mkdir();
@@ -20,7 +20,7 @@ public class WriteLog {
 			break;
 		case 'f': //fichier simple
 			try {
-				File f = new File(System.getProperty("user.dir")+"/Log/log.txt");
+				File f = new File(System.getProperty("user.dir")+path+"/log.txt");
 				
 				if(!f.exists()){
 					f.createNewFile();
@@ -36,8 +36,8 @@ public class WriteLog {
 			break;
 		case 'r': //fichier rotatif
 			try{
-				File f = new File(System.getProperty("user.dir")+"/Log/logRot_0.txt");
-				File ff = filerot(f, 0);
+				File f = new File(System.getProperty("user.dir")+path+"/logRot_0.txt");
+				File ff = filerot(f, 0, path);
 				FileWriter fw = new FileWriter(ff.getAbsoluteFile(), true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				bw.write(msg+"\r\n");
@@ -50,7 +50,7 @@ public class WriteLog {
 	}
 	
 	
-	private File filerot(File f, int i){
+	private File filerot(File f, int i, String path){
 		try{
 			if(!f.exists()){
 				f.createNewFile();
@@ -67,7 +67,7 @@ public class WriteLog {
 				file = br.readLine();
 				int i1 = Character.getNumericValue(file.charAt(0));
 				i1++;
-				return filerot(new File(System.getProperty("user.dir")+"/Log/logRot_"+i1+".txt"), i1);
+				return filerot(new File(System.getProperty("user.dir")+path+"/logRot_"+i1+".txt"), i1, path);
 			}else{
 				return f;
 			}

@@ -11,6 +11,7 @@ public class LogEsiea {
 	private char destination = 't';
 	private int lvl = 0;
 	private LogBuilder lb = new LogBuilder();
+	private String path = "/Log/";
 	
 	
 	public LogEsiea() {
@@ -21,36 +22,48 @@ public class LogEsiea {
 	public void error(String msg){
 		if(this.lvl <= Levels.valueOf("e").ordinal()){
 			StackTraceElement [] s = new RuntimeException().getStackTrace();
-			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "e", s[1].getLineNumber());
+			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "e", s[1].getLineNumber(), path);
 		}
 	}
 	
 	public void debug(String msg){
 		if(this.lvl <= Levels.valueOf("d").ordinal()){
 			StackTraceElement [] s = new RuntimeException().getStackTrace();
-			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "d", s[1].getLineNumber());
+			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "d", s[1].getLineNumber(), path);
 		}
 	}
 	
 	public void info(String msg){
 		if(this.lvl <= Levels.valueOf("i").ordinal()){
 			StackTraceElement [] s = new RuntimeException().getStackTrace();
-			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "i", s[1].getLineNumber());
+			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "i", s[1].getLineNumber(), path);
 		}
 	}
 	
 	public void wtf(String msg){
 		if(this.lvl <= Levels.valueOf("w").ordinal()){
 			StackTraceElement [] s = new RuntimeException().getStackTrace();
-			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "w", s[1].getLineNumber());
+			lb.LogginBuilder(this.df, this.loggingFrom, msg, this.destination, "w", s[1].getLineNumber(), path);
 		}
 	}
 
-	public void setDestination(char c) {
-		this.destination = c;		
+	public void setDestination(char c) { //Destination as console, file or rotative files
+		switch(c){
+		case 't':
+			this.destination = c;
+			break;
+		case 'f':
+			this.destination = c;
+			break;
+		case 'r':
+			this.destination = c;
+			break;
+		default:
+			this.destination = 't';
+		}		
 	}
 
-	public void setLevel(char lvl) {
+	public void setLevel(char lvl) { //logs filter
 		switch(lvl){
 		case 'd':
 			this.lvl = 0;
@@ -65,6 +78,8 @@ public class LogEsiea {
 			this.lvl = 0;
 			break;
 		}
-		
+	}
+	public void setPath(String path){ //Define the logs folder NOT THE FILE(S)
+		this.path = "/"+path;
 	}
 }
