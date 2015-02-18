@@ -9,7 +9,7 @@ public class Main {
 		
 		LogEsiea log = new LogEsiea();
 		log.setDestination('f');
-		
+		log.setLevel('i');
 		log.error("Error");
 		log.setDestination('r');
 		log.wtf("What the fuck ?");
