@@ -16,7 +16,6 @@ public class Main {
 		log.wtf("What the fuck ?");
 		log.debug("Debug");
 		log.info("Info");
-		
 	}
 
 }

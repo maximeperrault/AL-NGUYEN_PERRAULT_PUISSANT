@@ -7,9 +7,8 @@ import java.util.ArrayList;
 public class LogEsiea {
 
 	private final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-	private final String loggingFrom;
+	private String loggingFrom;
 	private ArrayList<Character> destination = new ArrayList<Character>();
-	//private char destination = 't';
 	private int lvl = 0;
 	private LogBuilder lb = new LogBuilder();
 	private String path = "/Log";
@@ -35,7 +34,7 @@ public class LogEsiea {
 		StackTraceElement [] s = new RuntimeException().getStackTrace();
 		this.loggingFrom = "("+s[1].getClassName()+")";
 	}
-	
+
 	public void error(String msg){
 		if(this.lvl <= Levels.valueOf("e").ordinal()){
 			StackTraceElement [] s = new RuntimeException().getStackTrace();
@@ -64,21 +63,6 @@ public class LogEsiea {
 		}
 	}
 
-	/*public void setDestination(char c) { //Destination as console, file or rotative files
-		switch(c){
-		case 't':
-			this.destination = c;
-			break;
-		case 'f':
-			this.destination = c;
-			break;
-		case 'r':
-			this.destination = c;
-			break;
-		default:
-			this.destination = 't';
-		}		
-	}*/
 	
 	public void setDestination(char c){
 		this.destination.clear();
