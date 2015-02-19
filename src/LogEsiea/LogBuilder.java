@@ -4,6 +4,7 @@
 package LogEsiea;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 class LogBuilder {
 
-	public void LogginBuilder(DateFormat df, String loggingFrom, String msg, char destination, String lvl, int line, String path){
+	public void LogginBuilder(DateFormat df, String loggingFrom, String msg, ArrayList<Character> destination, String lvl, int line, String path){
 		Date d = new Date();
 		
 		StringBuilder sb = new StringBuilder();

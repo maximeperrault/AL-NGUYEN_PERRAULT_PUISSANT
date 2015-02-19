@@ -8,6 +8,8 @@ public class Main {
 		
 		LogEsiea log = new LogEsiea();
 		//log.setDestination('f');
+		//log.addDestination('t');
+		//log.addDestination('r');
 		//log.setLevel('i');
 		log.error("Error");
 		//log.setDestination('r');

@@ -3,11 +3,12 @@ package LogEsiea;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class PropertiesLoader {
 	private String lvl;
-	private String destination;
+	private ArrayList<String> destination = new ArrayList<>();
 	private String path;
 	
 	public Properties load () throws IOException, FileNotFoundException{
@@ -16,9 +17,16 @@ public class PropertiesLoader {
 		FileInputStream input = new FileInputStream("src/LogEsiea/AL.properties");
 		properties.load(input);
 		
-		this.lvl = properties.getProperty("logger.LogEsiea.level");
-		this.destination = properties.getProperty("logger.LogEsiea.destination");
-		this.path = properties.getProperty("logger.LogEsiea.destination.path");
+		if(properties.getProperty("logger.LogEsiea.level") != null)
+			this.lvl = properties.getProperty("logger.LogEsiea.level");
+		if(properties.getProperty("logger.LogEsiea.setDestination") != null)
+				this.destination.add(properties.getProperty("logger.LogEsiea.setDestination"));
+		for(int i = 0; i < 3; i++){
+			if(properties.getProperty("logger.LogEsiea.addDestination"+i) != null)
+				this.destination.add(properties.getProperty("logger.LogEsiea.addDestination"+i));
+		}
+		if(properties.getProperty("logger.LogEsiea.destination.path") != null)
+			this.path = properties.getProperty("logger.LogEsiea.destination.path");
 		
 		input.close();
 		
@@ -32,11 +40,13 @@ public class PropertiesLoader {
 		return(Integer.parseInt(this.lvl));
 	}
 	
-	public char getDestination(){
-		if(this.destination == null)
-			return('a');
-		
-		return(this.destination.charAt(0));
+	public ArrayList<Character> getDestination(){
+		ArrayList<Character> c = new ArrayList<>();
+		if(this.destination.size() == 0)
+			return(null);
+		for(int i = 0; i < this.destination.size(); i++)
+			c.add(i, this.destination.get(i).charAt(0));
+		return(c);
 	}
 	
 	public String getPath(){	

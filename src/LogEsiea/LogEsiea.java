@@ -2,12 +2,14 @@ package LogEsiea;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class LogEsiea {
 
 	private final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	private final String loggingFrom;
-	private char destination = 't';
+	private ArrayList<Character> destination = new ArrayList<Character>();
+	//private char destination = 't';
 	private int lvl = 0;
 	private LogBuilder lb = new LogBuilder();
 	private String path = "/Log";
@@ -24,8 +26,8 @@ public class LogEsiea {
 		if(prop.getLvl() != 0)
 			setLevel(Levels.values()[prop.getLvl()].toString().toLowerCase().charAt(0));
 		
-		if(prop.getDestination() != 'a')
-			this.setDestination(prop.getDestination());
+		if(prop.getDestination() != null)
+			this.destination = prop.getDestination();
 		
 		if(prop.getPath() != null)
 			this.setPath(prop.getPath());
@@ -62,7 +64,7 @@ public class LogEsiea {
 		}
 	}
 
-	public void setDestination(char c) { //Destination as console, file or rotative files
+	/*public void setDestination(char c) { //Destination as console, file or rotative files
 		switch(c){
 		case 't':
 			this.destination = c;
@@ -76,6 +78,32 @@ public class LogEsiea {
 		default:
 			this.destination = 't';
 		}		
+	}*/
+	
+	public void setDestination(char c){
+		this.destination.clear();
+		addDestination(c);
+	}
+	
+	public void addDestination(char c){
+		switch(c){
+		case 't':
+			if(!this.destination.contains(c))
+				this.destination.add(c);
+			break;
+		case 'f':
+			if(!this.destination.contains(c))
+				this.destination.add(c);
+			break;
+		case 'r':
+			if(!this.destination.contains(c))
+				this.destination.add(c);
+			break;
+		default:
+			if(!this.destination.contains('t'))
+				this.destination.add('t');
+			break;
+		}
 	}
 
 	public void setLevel(char lvl) { //logs filter
