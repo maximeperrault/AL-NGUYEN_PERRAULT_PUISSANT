@@ -14,17 +14,20 @@ public class PropertiesLoader {
 	public Properties load () throws IOException, FileNotFoundException{
 		Properties properties = new Properties();
 		
-		FileInputStream input = new FileInputStream("src/LogEsiea/AL.properties");
+		FileInputStream input = new FileInputStream("AL.properties");
 		properties.load(input);
 		
 		if(properties.getProperty("logger.LogEsiea.level") != null)
 			this.lvl = properties.getProperty("logger.LogEsiea.level");
+		
 		if(properties.getProperty("logger.LogEsiea.setDestination") != null)
 				this.destination.add(properties.getProperty("logger.LogEsiea.setDestination"));
-		for(int i = 0; i < 3; i++){
+		
+		for(int i = 1; i < 3; i++){
 			if(properties.getProperty("logger.LogEsiea.addDestination"+i) != null)
 				this.destination.add(properties.getProperty("logger.LogEsiea.addDestination"+i));
 		}
+		
 		if(properties.getProperty("logger.LogEsiea.destination.path") != null)
 			this.path = properties.getProperty("logger.LogEsiea.destination.path");
 		
@@ -42,10 +45,13 @@ public class PropertiesLoader {
 	
 	public ArrayList<Character> getDestination(){
 		ArrayList<Character> c = new ArrayList<>();
+		
 		if(this.destination.size() == 0)
 			return(null);
+		
 		for(int i = 0; i < this.destination.size(); i++)
 			c.add(i, this.destination.get(i).charAt(0));
+		
 		return(c);
 	}
 	

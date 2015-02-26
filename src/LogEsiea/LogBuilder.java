@@ -1,16 +1,11 @@
-/**
- * 
- */
 package LogEsiea;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * @author Antoine
- * Building the log string before writing it where the user want it to
- */
+// Building the log string before writing it where the user wants it to
+
 class LogBuilder {
 
 	public void LogginBuilder(DateFormat df, String loggingFrom, String msg, ArrayList<Character> destination, String lvl, int line, String path){
@@ -28,6 +23,5 @@ class LogBuilder {
 		sb.append("]");
 		WriteLog w = new WriteLog();
 		w.write(destination, sb.toString(), path);
-	}
-	
+	}	
 }

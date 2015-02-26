@@ -20,10 +20,10 @@ public class WriteLog {
 		}else{
 			for(int index = 0; index < destination.size(); index++){
 				switch(destination.get(index)){
-				case 't': //terminal
+				case 't': // Terminal
 					System.out.println(msg);
 					break;
-				case 'f': //fichier simple
+				case 'f': // File
 					try {
 						File f = new File(System.getProperty("user.dir")+path+"/log.txt");
 						
@@ -39,7 +39,7 @@ public class WriteLog {
 						e.printStackTrace();
 					}
 					break;
-				case 'r': //fichier rotatif
+				case 'r': // Rotary file
 					try{
 						File f = new File(System.getProperty("user.dir")+path+"/logRot_0.txt");
 						File ff = filerot(f, 0, path);
@@ -55,7 +55,6 @@ public class WriteLog {
 			}
 		}
 	}
-	
 	
 	private File filerot(File f, int i, String path){
 		try{

@@ -13,7 +13,6 @@ public class LogEsiea {
 	private LogBuilder lb = new LogBuilder();
 	private String path = "/Log";
 	
-	
 	public LogEsiea() {
 		PropertiesLoader prop = new PropertiesLoader();
 		try {
@@ -63,7 +62,6 @@ public class LogEsiea {
 		}
 	}
 
-	
 	public void setDestination(char c){
 		this.destination.clear();
 		addDestination(c);
@@ -90,7 +88,7 @@ public class LogEsiea {
 		}
 	}
 
-	public void setLevel(char lvl) { //logs filter
+	public void setLevel(char lvl) { // Logs filter
 		switch(lvl){
 		case 'd':
 			this.lvl = 0;
@@ -106,7 +104,7 @@ public class LogEsiea {
 			break;
 		}
 	}
-	public void setPath(String path){ //Define the logs folder NOT THE FILE(S)
+	public void setPath(String path){ // Define the logs folder, NOT THE FILE(S)
 		this.path = "/"+path;
 	}
 }
